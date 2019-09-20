@@ -3,16 +3,18 @@
  */
 
 public abstract class Shape {
-	private String name;
-	private static int shapeCount;
+	private static int shapeCount = 0;
 
 	//Abstract Methods	
 	abstract double area();
 	abstract double perimeter();
 	abstract String getShape();
 
+	/**
+	 * Super constructor increments shapeCount
+	 */
 	//Constructor
-	public Shape(String name) {
-		this.name = name;
+	public Shape() {
+		shapeCount += 1;
 	}
 }
