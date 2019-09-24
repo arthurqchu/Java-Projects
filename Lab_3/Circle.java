@@ -18,11 +18,17 @@ public class Circle extends Shape {
 	}
 	@Override	
 	public double area() {
-		return (2 * (diameter/2) ) * Math.PI;
+		return (2 * (this.diameter/2) ) * Math.PI;
 	}
 	@Override
 	public double perimeter() {
-		return diameter * Math.PI;
+		return this.diameter * Math.PI;
 		
+	}
+	@Override
+	public void display() {
+		System.out.println("Shape: " + getShape());
+		System.out.println("Area: " + area());
+		System.out.println("Perimeter: " + perimeter());
 	}
 }
