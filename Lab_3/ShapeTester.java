@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.Collections;
 
 public class ShapeTester {
 	public static void main (String[] args) {
@@ -29,5 +30,18 @@ public class ShapeTester {
 			}
 		}
 		System.out.println("Shape Count: " + Shape.getShapeCount());
+		displayArray(shapes);
+		
+		Collections.sort(shapes);
+		displayArray(shapes);
+
+	
 	}
+
+	public static void displayArray(ArrayList<Shape> list) {
+		for(Shape shape: list) {
+			shape.display();
+		}
+	}
+
 }
