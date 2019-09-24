@@ -25,4 +25,10 @@ public class Triangle extends Shape {
 	public String getShape() {
 		return "Triangle"; 
 	}
+	@Override
+	public void display() {
+		System.out.println("Shape: " + getShape());
+		System.out.println("Area: " + area());
+		System.out.println("Perimeter: " + perimeter());
+	}
 }

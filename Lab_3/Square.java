@@ -19,4 +19,10 @@ public class Square extends Rectangle {
 	public double perimeter() {
 		return 4 * this.length;
 	}
+	@Override
+	public void display() {
+		System.out.println("Shape: " + getShape());
+		System.out.println("Area: " + area());
+		System.out.println("Perimeter: " + perimeter());
+	}
 }

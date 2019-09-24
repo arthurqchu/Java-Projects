@@ -22,4 +22,10 @@ public class Rectangle extends Shape {
 	public double perimeter() {
 		return (2 * this.length) + (2 * this.width);
 	}
+	@Override
+	public void display() {
+		System.out.println("Shape: " + getShape());
+		System.out.println("Area: " + area());
+		System.out.println("Perimeter: " + perimeter());
+	}
 }
