@@ -17,12 +17,20 @@ public abstract class Shape implements Displayable, Comparable<Shape> {
 	public Shape() {
 		shapeCount += 1;
 	}
+	/**
+	*Returns shapeCount
+	*/
 	public static int getShapeCount() {
 		return shapeCount;
 	}
 	@Override
 	public void display() {
 	}
+	/**
+	*Overrides compareTo method from the Comparable
+	*superclass in order to compare the shapes by the areas
+	*/
+	@Override
 	public int compareTo(Shape otherShape) {
 		if(this.area() > otherShape.area()) {
 			return 1;
