@@ -1,47 +1,55 @@
 /**
-* Class for creating and operating on rectangles; extends Shape
-*/
-public class Rectangle extends Shape {
+ * A class used to create rectangles
+ * from Lab 2
+ */
+public class Rectangle {
 	private double length;
-	private double width;
-	/**
-	* Constructor that uses superconstructor from Shape
-	*/
+	private double height;
+	private double rectangleID;
+	public static int rectangleCount = 0;
+	
 	//Constructor
-	public Rectangle(double length, double width) {
-		super();
+	public Rectangle(double length, double height) {
 		this.length = length;
-		this.width = width;
+		this.height = height;
+		this.rectangleID = rectangleCount;
+		rectangleCount = rectangleCount + 1;
+		return;
 	}
-	/**
-	* Returns string "Rectangle" for rectangles
-	*/
-	//Abstract methods
-	@Override
-	public String getShape() {
-		return "Rectangle";
+	
+	//Methods to alter rectangles
+	public void setLength(double L) {
+		this.length = L;
 	}
-	/**
-	* Returns area of rectangle
-	*/
-	@Override
+	
+	public void setHeight(double H) {
+		this.height = H;
+	}
+	
 	public double area() {
-		return this.length * this.width;
+		return (this.length * this.height);
 	}
-	/**
-	* Returns perimeter for rectangle
-	*/
-	@Override
+	
 	public double perimeter() {
-		return (2 * this.length) + (2 * this.width);
+		return ((2 * this.length) + (2 * this.height));
+	}
+	public double getRectangleID() {
+		return this.rectangleID;
+	}
+	
+	//Getters
+	public double getLength() {
+		return this.length;
+	}
+	
+	public double getHeight() {
+		return this.height;
 	}
 	/**
-	* Displays information about rectangle
-	*/
+	 * Prints information about the rectangle
+	 */
 	@Override
-	public void display() {
-		System.out.println("Shape: " + getShape());
-		System.out.println("Area: " + area());
-		System.out.println("Perimeter: " + perimeter());
+	public String toString() {
+		return "Shape: Rectangle" + "\nLength: " + getLength() + "\nHeight: " + getHeight();
 	}
 }

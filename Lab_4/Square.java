@@ -1,44 +1,42 @@
 /**
-* Square class creates and operates on squares; extends Rectangle
-*/
-public class Square extends Rectangle {
-	private double length;
+ *Square extends Rectangle
+ * @author Arthur
+ *
+ */
+public class Square extends Rectangle {	
 	/**
-	* Constructor that uses constructor from Rectangle
-	*/
-	//Constructor
-	public Square(double length) {
-		super(length, length);
+	 * Square Constructor
+	 * @param length
+	 */
+	public Square(double width) {
+		super(width, width);
+	}
+	
+	//Methods
+	/**
+	 * Overrides the equals method to return true if two squares are the same size
+	 */
+	@Override
+	public boolean equals(Object obj) {
+		if (obj instanceof Square) {
+			Square s = (Square) obj;
+			if (s.getLength() == getLength()) {
+				return true;
+			}
+			else {
+				return false;
+			}
+		
+		}
+		else {
+			return false;
+		}
 	}
 	/**
-	* Returns string "Square" for squares
-	*/
-	//Abstract methods
+	 * Overrides toString from Rectangle superclass
+	 */
 	@Override
-	public String getShape() {
-		return "Square";
-	}
-	/**
-	* Returns area for squares
-	*/
-	@Override
-	public double area() {
-		return this.length * this.length;
-	}
-	/**
-	* Returns perimeter for square
-	*/
-	@Override
-	public double perimeter() {
-		return 4 * this.length;
-	}
-	/**
-	* Displays information about square
-	*/
-	@Override
-	public void display() {
-		System.out.println("Shape: " + getShape());
-		System.out.println("Area: " + area());
-		System.out.println("Perimeter: " + perimeter());
+	public String toString() {
+		return "Shape: Square" + "\nLength: " + getLength() + "\nHeight: " + getHeight();
 	}
 }
