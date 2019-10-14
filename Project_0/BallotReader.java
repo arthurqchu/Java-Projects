@@ -1,6 +1,6 @@
 import java.io.IOException;
 import java.io.FileReader;
-
+import java.util.Scanner;
 
 
 public class BallotReader
@@ -18,13 +18,14 @@ public class BallotReader
 		//return ballot;
 
 		//Read the input file
-		String fileName;
-		String inputInfo;
-		FileReader inputFile;
+		String fileName = "ENTER FILE NAME";
+		Scanner fileScnr = new Scanner(fileName);
 
-		inputFile = new FileReader(fileName);
-		inputInfo = inputFile.read();
-
+		String officeName = fileScnr.nextLine();
+		int numCandidates = fileScnr.nextLine();
+		for(int i = 1; i <= numCandidates; i++) {
+USE A SCANNER TO SCAN EACH CANDIDATE STRING READ, LOOK FOR SEMI COLON, CREATE CANDIDATE AND ADD TO ARRAY
+		}
 	}
 }
 
