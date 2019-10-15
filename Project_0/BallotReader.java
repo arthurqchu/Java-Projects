@@ -22,10 +22,24 @@ public class BallotReader
 		Scanner fileScnr = new Scanner(fileName);
 
 		String officeName = fileScnr.nextLine();
-		int numCandidates = fileScnr.nextLine();
+		Ballot inputBallot = new Ballot(officeName);
+
+		int numCandidates = Integer.parseInt(fileScnr.nextLine());
 		for(int i = 1; i <= numCandidates; i++) {
-USE A SCANNER TO SCAN EACH CANDIDATE STRING READ, LOOK FOR SEMI COLON, CREATE CANDIDATE AND ADD TO ARRAY
+			String candidateInput = fileScnr.nextLine();
+			for(int j = 0; j < candidateInput.length(); j++) {
+				char ch = candidateInput.charAt(j);
+				if(ch == ';') {
+					String candidateName = candidateInput.substring(0, j-1);
+					String candidateAffiliation = candidateInput.substring(j+1, -1);
+					
+					Candidate candidate = new Candidate(candidateName, candidateAffiliation);	
+					inputBallot.addCandidate(candidate);	
+					return inputBallot;
+				}
+			}
 		}
+		return inputBallot;
 	}
 }
 

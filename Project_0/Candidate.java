@@ -36,6 +36,6 @@ public class Candidate
 
 	public String toString()
 	{
-		 return null;
+		 return this.getName() + " - " + this.getAffiliation();
 	}
 }
