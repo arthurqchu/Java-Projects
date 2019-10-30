@@ -16,14 +16,21 @@ import java.util.ArrayList;
 public class CodeChecker {
 
 	public static void main(String[] args) throws IOException {
-		FileInputStream stream = new FileInputStream(args[0]);
+		FileInputStream stream = new FileInputStream("Circle.java"); //FIXME
 		String inputString = "";
-		int data;
+		int data = -2;
 		while(data != -1) {
 			data = stream.read();
-			inputString += data;
+			String tmpString = String.valueOf((char)data);
+			inputString += tmpString;
 		}
-		List<String> lines = inputString.split("\n");
+		List<String> lines = new ArrayList<String>();
+		String[] stringArray = inputString.split("\n");
+		for(String str : stringArray) {
+			lines.add(str);
+		}
+
+		containsMismatchedParentheses(lines);
 	}
 
 	/**  
@@ -32,64 +39,77 @@ public class CodeChecker {
 	* mismatched parentheses are discovered. Parentheses checked include  
 	* {}, [], and ().  
 	* @param lines the list of lines  
-	* @return true if thae lines contain mismatched parentheses, false  
+	* @return true if the lines contain mismatched parentheses, false  
 	* otherwise  
 	*/  
 	public static boolean containsMismatchedParentheses(List<String> lines) {
-		Stack stack = new Stack();
+		Stack<Character> stack = new Stack<>();
+		String longString = "";
+		boolean errorFound = false;
 		for(String current:lines) {
-			for(int i = 0; i < current.length(); i++) {
-				//Opening parentheses
-				if(lines.get(i).equals('{')) {
-					stack.push(lines.get(i));
-				}
+			longString += current;
+		}
+		for(int i = 0; i < longString.length(); i++) {
+			//Opening parentheses
+			if(longString.charAt(i) == '{') {
+				stack.push(longString.charAt(i));
+			}
 
-				if(lines.get(i).equals('[')) {
-					stack.push(lines.get(i));
-				}
+			if(longString.charAt(i) == '[') {
+				stack.push(longString.charAt(i));
+			}
 
-				if(lines.get(i).equals('(')) {
-					stack.push(lines.get(i));
-				}
-				//CLosing parentheses
-				if(lines.get(i).equals('}')) {
+			if(longString.charAt(i) == '(') {
+				stack.push(longString.charAt(i));
+			}
+			//CLosing parentheses
+			if(longString.charAt(i) == '}') {
+				if(stack.empty() != true) {
 					if(stack.peek().equals('{')) {
 						stack.pop();
 					}
 					else {
 						System.out.printf("Error: Closing } encountered; %s popped off the stack.\n", stack.pop());
+						errorFound = true;
 					}
 				}
+			}
 
-				if(lines.get(i).equals(']')) {
+			if(longString.charAt(i) == ']') {
+				if(stack.empty() != true) {
 					if(stack.peek().equals('[')) {
 						stack.pop();
 					}
 					else {
 						System.out.printf("Error: Closing ] encountered; %s popped off the stack.\n", stack.pop());
+						errorFound = true;
 					}
 				}
+			}
 
-				if(lines.get(i).equals(')')) {
+			if(longString.charAt(i) == ')') {
+				if(stack.empty() != true) {
 					if(stack.peek().equals('(')) {
 						stack.pop();
 					}
 					else {
 						System.out.printf("Error: Closing ) encountered; %s popped off the stack.\n", stack.pop());
+						errorFound = true;
 					}
 				}
-
 			}
+
 		}
 		//Check if stack is empty to determine is parentheses are balanced
 		if(stack.empty() == false ) {
 			System.out.println("Stack not empty, not all parentheses closed.");
 			return true;
 		}
-		else {	
+		else if(errorFound == false) {	
 			System.out.println("Parentheses are balanced.");
 			return false;
 		}
+		return errorFound;
 	}
 }
 
